@@ -6,7 +6,7 @@ void Tree::Out(ofstream &outfile)
 
 	outfile << "ему " << year<< " лет, ";
 	
-	outfile << ", Его название: " << name;
+	outfile << "Его название: " << name << "\n";
 }
 
 

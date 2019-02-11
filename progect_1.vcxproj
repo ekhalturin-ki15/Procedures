@@ -87,7 +87,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,7 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
-    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Flower.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tree.cpp" />
@@ -154,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bush.h" />
-    <ClInclude Include="Client.h" />
     <ClInclude Include="RingList.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>

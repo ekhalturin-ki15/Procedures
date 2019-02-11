@@ -5,53 +5,47 @@
 #include "Flower.h"
 #include "Tree.h"
 #include "Bush.h"
-#include "Client.h"
 
 using namespace std;
-
-int n;
 
 int main(int amount, char* param[])
 {
 
 	setlocale(LC_ALL, "Russian");
 
-#ifdef _DEBUG 
-	
-	ifstream infile("in.txt");
-	ofstream outfile("out.txt");
-	
-#else
-	
-	if (amount != 3)
-	{
-		cout << "Ошибка в количестве параметров";
-		return 1;
-	}
+	ifstream infile;
+	ofstream outfile;
 
-	ifstream infile(param[1]);
-	ofstream outfile(param[2]);
-	
-#endif
+	if (amount == 3)
+	{
+		infile.open(param[1]);
+		outfile.open(param[2]);
+	}
+	else
+	{
+		infile.open("in.txt");
+		outfile.open("out.txt");
+	}
 
 
 	cout << "Старт" << endl;
 
-	RingList<Flower> container;
+	RingList<Flower*> container;
 
-	In(infile, container);
+	container.In(infile);
 
 	cout << "Данные считаны с файла" << endl;
 
 	container.Out(outfile);
 
-	cout << "Данные выведенны в файл" << endl;
+	cout << "Данные выведенны в файл" << endl<<"количество объектов: "<< container.WatAmount()<<endl;
 
 	container.Clear();
 
-	cout << "Контейнер очищен" << endl;
+	cout << "Контейнер очищен" << endl << "количество объектов: " << container.WatAmount() << endl;
 
 	container.Out(outfile);
 
 	cout << "Финиш" << endl;
+	getchar();
 }

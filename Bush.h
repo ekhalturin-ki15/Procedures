@@ -2,7 +2,11 @@
 
 #include <fstream>
 #include <algorithm>
+#include <string>
+#include <vector>
 #include "Flower.h"
+
+const vector<string> watIsMonth = { "€нварь", "февраль", "март", "апрель", "май","июнь", "июль", "август", "сент€брь", "окт€брь", "но€брь", "декабрь" };
 
 
 class Bush : public Flower
@@ -13,7 +17,6 @@ public:
 	void Out(ofstream &outfile);
 
 private:
-	vector<string> watIsMonth = { "€нварь", "февраль", "март", "апрель", "май",
-		"июнь", "июль", "август", "сент€брь", "окт€брь", "но€брь", "декабрь" };
+	
 	char month;
 };

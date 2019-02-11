@@ -8,7 +8,7 @@ template <typename Data>
 class ElementRL
 {
 public:
-	Data *data;
+	Data data;
 	ElementRL<Data> *next;
 	ElementRL<Data> *prev;
 };
@@ -26,6 +26,8 @@ public:
 	~RingList();
 
 	void PushBack(DataRL flower);
+
+	void In(ifstream &infile);
 	
 	////Вывод
 	void Out(ofstream &outfile);
@@ -35,6 +37,8 @@ public:
 
 	//Инициализация
 	void Init();
+
+	int WatAmount();
 
 
 
@@ -71,7 +75,7 @@ void RingList<DataRL>::PushBack(DataRL flower)
 		end->next = newEl;
 		newEl->prev = end;
 		newEl->next = start;
-		newEl->data = new flower;
+		newEl->data = flower;
 		end = newEl;
 		start->prev = end;
 	}
@@ -105,7 +109,8 @@ template <typename  DataRL>
 void RingList<DataRL>::Clear()
 {
 	ElementRL<DataRL>* newEl = start;
-	ElementRL<DataRL>* newElnext = start->next;
+	ElementRL<DataRL>* newElnext;
+	if (start!=0)  newElnext  = start->next;
 
 	for (int i = 0; i < this->amountEl; ++i)
 	{
@@ -133,4 +138,45 @@ template <typename  DataRL>
 RingList<DataRL>::~RingList()
 {
 	this->Clear();
+}
+
+
+template <typename  DataRL>
+int RingList<DataRL>::WatAmount()
+{
+	return this->amountEl;
+}
+
+#define TREE 1
+#define BUSH 2
+
+template <typename  DataRL>
+void RingList<DataRL>::In(ifstream &infile)
+{
+	int type;
+
+	while (true)
+	{
+		type = 0;
+		infile >> type;
+		if (!type) break;
+		//Значит ввод не закончен
+		Flower *object;
+
+
+		if (type == TREE)
+		{
+			object = new Tree;
+		}
+
+		if (type == BUSH)
+		{
+			object = new Bush;
+		}
+
+		object->In(infile);
+		this->PushBack(object);
+
+	}
+
 }

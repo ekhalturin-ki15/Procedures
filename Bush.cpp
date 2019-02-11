@@ -2,18 +2,20 @@
 
 void Bush::Out(ofstream &outfile)
 {
+	
 	outfile << "Ёто кустарник, ";
 
-	if (month == -1)
+	if (-1<month && month<12)
 	{
-		outfile << "мес€ц цветени€ считалс€ некорректно";
+		outfile << "мес€ц цветени€ - " << watIsMonth[month - 1];
+		
 	}
 	else
 	{
-		outfile << "мес€ц цветени€ "<< watIsMonth[month];
+		outfile << "мес€ц цветени€ считалс€ некорректно";
 	}
 
-	outfile << ", ≈го название: " << name;
+	outfile << ", ≈го название: " << name<<"\n";
 
 }
 
@@ -21,19 +23,7 @@ void Bush::Out(ofstream &outfile)
 void Bush::In(ifstream &infile)
 {
 	string s;
-	infile >> s >> this->name;
-
-	this->month = -1;
-
-	int i = 0;
-	for (auto it : watIsMonth)
-	{
-		if (s == it)
-		{
-			this->month = i;
-			break;
-		}
-		i++;
-	}
+	infile >> this->month >> this->name;
+	this->month -= '0';
 
 }
