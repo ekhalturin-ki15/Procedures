@@ -37,7 +37,7 @@ int main(int amount, char* param[])
 
 	cout << "Старт" << endl;
 
-	RingList<Flower*> container;
+	RingList<Flower> container;
 
 	In(infile, container);
 

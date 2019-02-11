@@ -7,6 +7,6 @@
 
 using namespace std;
 
-void In(ifstream &infile, RingList<Flower*> &container);
+void In(ifstream &infile, RingList<Flower> &container);12
 
 //void Out(ofstream &outfile, RingList<Flower*> &container);

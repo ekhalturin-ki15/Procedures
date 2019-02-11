@@ -3,7 +3,7 @@
 #define TREE 1
 #define BUSH 2
 
-void In(ifstream &infile, RingList<Flower*> &container)
+void In(ifstream &infile, RingList<Flower> &container)
 {
 	int type = 0;
 
@@ -19,17 +19,18 @@ void In(ifstream &infile, RingList<Flower*> &container)
 		if (type == TREE)
 		{
 			object = new Tree;
-			object->In(infile);
-			container.PushBack(object);
+			
 
 		}
 
 		if (type == BUSH)
 		{
 			object = new Bush;
-			object->In(infile);
-			container.PushBack(object);
 		}
+
+		object->In(infile);
+		container.PushBack(object);
+		delete object;
 	}
 
 }

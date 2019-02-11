@@ -8,7 +8,7 @@ template <typename Data>
 class ElementRL
 {
 public:
-	Data data;
+	Data *data;
 	ElementRL<Data> *next;
 	ElementRL<Data> *prev;
 };
@@ -71,7 +71,7 @@ void RingList<DataRL>::PushBack(DataRL flower)
 		end->next = newEl;
 		newEl->prev = end;
 		newEl->next = start;
-		newEl->data = flower;
+		newEl->data = new flower;
 		end = newEl;
 		start->prev = end;
 	}
