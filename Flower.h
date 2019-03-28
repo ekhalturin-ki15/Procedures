@@ -3,25 +3,31 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <functional>
 #include "RingList.h"
+#include "Bush.h"
+#include "Tree.h"
 
-enum { tree, bush } type;
+enum Type { tree, bush } ;
 
 struct Flower
 {
-	
+	Type key;
 	union
 	{
-		type key;
 		Bush b;
 		Tree t;
+	};
+	Flower() {};
+	~Flower() {};
+	Flower(const Flower & f) {};
+	Flower operator =(const Flower & f)
+	{
+		return f;
 	}
+
+
 };
 
-void InAll(std::ifstream &infile, RingList<Flower*>  &container);
-
-void OutAll(std::ofstream &outfile, RingList<Flower*>  container);
-
-void Clear(RingList<Flower*>  &container);
-
+void InAll(std::ifstream & infile, RingList<Flower>& container);
+Flower GetFlower(std::ifstream & infile, int type);
+void OutAll(std::ofstream & outfile, RingList<Flower> container);

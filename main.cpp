@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 #include "Flower.h"
-#include "Tree.h"
-#include "Bush.h"
+
+const int StandartInpAtr = 3;
 
 int main(int amount, char* param[])
 {
@@ -13,7 +13,7 @@ int main(int amount, char* param[])
 	std::ifstream infile;
 	std::ofstream outfile;
 
-	if (amount == 3)
+	if (amount == StandartInpAtr)
 	{
 		infile.open(param[1]);
 		outfile.open(param[2]);
@@ -25,47 +25,28 @@ int main(int amount, char* param[])
 	}
 
 
+	
 	std::cout << "Старт" << std::endl;
 
-	RingList<Flower*> container;
-	
-	Flower::InAll(infile, container);
+	RingList<Flower> container;
+
+	InAll(infile, container);
 
 	std::cout << "Данные считаны с файла" << std::endl;
 
-	Flower::OutAll(outfile, container);
+	OutAll(outfile, container);
 
-	std::cout << "Данные выведенны в файл" << std::endl<<"количество объектов: "<< container.WatAmount()<< std::endl;
+	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
-	Flower::Clear(container);
+	container.Clear();
 
 	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
-	Flower::OutAll(outfile, container);
+	OutAll(outfile, container);
 
 	std::cout << "Финиш" << std::endl;
+
+	
 	getchar();
-}
 
-
-#define TREE 1
-#define BUSH 2
-
-Flower * Flower::GetFlower(std::ifstream & infile, int type)
-{
-	Flower *object;
-
-	if (type == TREE)
-	{
-		object = new Tree;
-	}
-
-	if (type == BUSH)
-	{
-		object = new Bush;
-	}
-
-	object->In(infile);
-
-	return object;
 }

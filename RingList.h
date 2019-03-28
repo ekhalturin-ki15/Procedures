@@ -30,7 +30,7 @@ public:
 
 
 	// Положить в конец
-	void PushBack(DataRL flower);
+	void PushBack(DataRL &object);
 
 	//void In(ifstream &infile);
 	
@@ -72,7 +72,7 @@ ElementRL<DataRL>* RingList<DataRL>::begin()
 
 
 template <typename  DataRL>
-void RingList<DataRL>::PushBack(DataRL flower)
+void RingList<DataRL>::PushBack(DataRL &object)
 {
 	
 
@@ -85,7 +85,7 @@ void RingList<DataRL>::PushBack(DataRL flower)
 		end->next = newEl;
 		newEl->prev = end;
 		newEl->next = start;
-		newEl->data = flower;
+		newEl->data = object;
 		end = newEl;
 		start->prev = end;
 	}
@@ -94,7 +94,7 @@ void RingList<DataRL>::PushBack(DataRL flower)
 		start = newEl;
 		start->next = start;
 		start->prev = start;
-		start->data = flower;
+		start->data = object;
 		end = start;
 	}
 	this->amountEl++;
@@ -106,6 +106,16 @@ void RingList<DataRL>::PushBack(DataRL flower)
 template <typename  DataRL>
 void RingList<DataRL>::Clear()
 {
+	ElementRL<DataRL> *it = this->begin();
+	ElementRL<DataRL> *nextit;
+	if (it != 0) nextit = it->next;
+	for (int i = 0; i < this->WatAmount(); i++)
+	{
+		delete it;
+		it = nextit;
+		nextit = nextit->next;
+	}
+
 	this->amountEl = 0;
 	start = 0;
 	end = 0;

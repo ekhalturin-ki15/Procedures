@@ -1,13 +1,22 @@
 #include "Bush.h"
 
-void Bush::Out(std::ofstream &outfile)
+Bush InBush(std::ifstream & infile)
+{
+	Bush b;
+	infile >> b.month >> b.name;
+	return b;
+}
+
+
+
+void OutBush(std::ofstream &outfile, Bush b)
 {
 	
 	outfile << "Ёто кустарник, ";
 
-	if (-1<month && month<12)
+	if (-1<b.month && b.month<12)
 	{
-		outfile << "мес€ц цветени€ - " << watIsMonth[month - 1];
+		outfile << "мес€ц цветени€ - " << watIsMonth[b.month - 1];
 		
 	}
 	else
@@ -15,14 +24,6 @@ void Bush::Out(std::ofstream &outfile)
 		outfile << "мес€ц цветени€ считалс€ некорректно";
 	}
 
-	outfile << ", ≈го название: " << name<<"\n";
-
-}
-
-
-void Bush::In(std::ifstream &infile)
-{
-	std::string s;
-	infile >> this->month >> this->name;
+	outfile << ", ≈го название: " << b.name<<"\n";
 
 }

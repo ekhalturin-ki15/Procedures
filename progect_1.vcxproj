@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1F73FB43-92F8-4027-820B-C3385A8D7EDD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>progect_1</RootNamespace>
+    <RootNamespace>progect_1_struct</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>progect_1_struct</ProjectName>
   </PropertyGroup>

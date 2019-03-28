@@ -1,16 +1,18 @@
 #include "Tree.h"
 
-void Tree::Out(std::ofstream &outfile)
+Tree InTree(std::ifstream & infile)
 {
-	outfile << "Это дерево, ";
-
-	outfile << "ему " << year<< " лет, ";
-	
-	outfile << "Его название: " << name << "\n";
+	Tree t;
+	infile >> t.year >> t.name;
+	return t;
 }
 
 
-void Tree::In(std::ifstream &infile)
+void OutTree(std::ofstream &outfile, Tree t)
 {
-	infile >> this->year >> this->name;
+	outfile << "Это дерево, ";
+
+	outfile << "ему " << t.year<< " лет, ";
+	
+	outfile << "Его название: " << t.name << "\n";
 }

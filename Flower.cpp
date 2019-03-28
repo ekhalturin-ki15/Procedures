@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Flower.h"
-#include "Tree.h"
-#include "Bush.h"
 
-void Flower::InAll(std::ifstream & infile, RingList<Flower*>& container)
+void InAll(std::ifstream & infile, RingList<Flower>& container)
 {
 	int type;
 
@@ -17,29 +15,37 @@ void Flower::InAll(std::ifstream & infile, RingList<Flower*>& container)
 	}
 }
 
-
-void Flower::OutAll(std::ofstream & outfile, RingList<Flower*> container)
+Flower GetFlower(std::ifstream & infile, int type)
 {
-	ElementRL<Flower*> *it = container.begin();
-	for (int i = 0; i < container.WatAmount(); i++)
+	Flower object;
+	object.key = static_cast<Type> (type);
+	if (type == Type::bush)
 	{
-		it->data->Out(outfile);
-		it = it->next;
+		object.b = InBush(infile);
 	}
-	
 
+	if (type == Type::tree)
+	{
+		object.t = InTree(infile);
+	}
+
+	return object;
 }
 
-void Flower::Clear(RingList<Flower*>& container)
+void OutAll(std::ofstream & outfile, RingList<Flower> container)
 {
-	ElementRL<Flower*> *it = container.begin();
-	ElementRL<Flower*> *nextit;
-	if (it != 0) nextit = it->next;
+	ElementRL<Flower> *it = container.begin();
 	for (int i = 0; i < container.WatAmount(); i++)
 	{
-		delete it;
-		it = nextit;
-		nextit = nextit->next;
+		switch (it->data.key)
+		{
+		case Type::tree:
+			OutTree(outfile, it->data.t);
+			break;
+		case Type::bush:
+			OutBush(outfile, it->data.b);
+			break;
+		}
+		it = it->next;
 	}
-	container.Clear();
 }
