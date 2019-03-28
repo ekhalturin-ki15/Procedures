@@ -1,22 +1,27 @@
 #pragma once
+
 #include <string>
 #include <vector>
+#include <fstream>
+#include <functional>
 #include "RingList.h"
 
+enum { tree, bush } type;
 
-using namespace std;
-
-//Родительский класс наследования
-
-class Flower
+struct Flower
 {
-public:
-
-	virtual void In(ifstream &infile)=0;
-	virtual void Out(ofstream &outfile) =0;
-
-	//void ClientIn(ifstream &infile, RingList<Flower*> &container);
-
-protected:
-	string name;
+	
+	union
+	{
+		type key;
+		Bush b;
+		Tree t;
+	}
 };
+
+void InAll(std::ifstream &infile, RingList<Flower*>  &container);
+
+void OutAll(std::ofstream &outfile, RingList<Flower*>  container);
+
+void Clear(RingList<Flower*>  &container);
+

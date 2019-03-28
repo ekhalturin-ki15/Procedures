@@ -1,6 +1,6 @@
 #include "Bush.h"
 
-void Bush::Out(ofstream &outfile)
+void Bush::Out(std::ofstream &outfile)
 {
 	
 	outfile << "Это кустарник, ";
@@ -20,10 +20,9 @@ void Bush::Out(ofstream &outfile)
 }
 
 
-void Bush::In(ifstream &infile)
+void Bush::In(std::ifstream &infile)
 {
-	string s;
+	std::string s;
 	infile >> this->month >> this->name;
-	this->month -= '0';
 
 }

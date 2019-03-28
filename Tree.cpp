@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-void Tree::Out(ofstream &outfile)
+void Tree::Out(std::ofstream &outfile)
 {
 	outfile << "Это дерево, ";
 
@@ -10,7 +10,7 @@ void Tree::Out(ofstream &outfile)
 }
 
 
-void Tree::In(ifstream &infile)
+void Tree::In(std::ifstream &infile)
 {
 	infile >> this->year >> this->name;
 }

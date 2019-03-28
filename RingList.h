@@ -1,8 +1,5 @@
 #pragma once
 
-using namespace std;
-
-
 //Элемент контейнера кольцевой двусвязанный список
 template <typename Data>
 class ElementRL
@@ -11,8 +8,16 @@ public:
 	Data data;
 	ElementRL<Data> *next;
 	ElementRL<Data> *prev;
+
+	friend const ElementRL<Data>& operator++(ElementRL<Data>& el);
 };
 
+template <typename Data>
+const ElementRL<Data>& operator++(ElementRL<Data>& el)
+{
+	el.next;
+	return i;
+}
 
 
 //Объявление двусвязанного списка
@@ -23,28 +28,27 @@ public:
 	
 	RingList();
 
-	~RingList();
 
+	// Положить в конец
 	void PushBack(DataRL flower);
 
-	void In(ifstream &infile);
+	//void In(ifstream &infile);
 	
-	////Вывод
-	void Out(ofstream &outfile);
+	ElementRL<DataRL>* begin();
 
 	////Удалить
 	void Clear();
 
-	//Инициализация
-	void Init();
 
 	int WatAmount();
 
 
 
 private:
+
 	ElementRL<DataRL>* start;
 	ElementRL<DataRL>* end;
+	ElementRL<DataRL>* now; // Для постепенного вывода 
 	int amountEl;
 
 };
@@ -57,7 +61,13 @@ private:
 template <typename  DataRL>
 RingList<DataRL>::RingList()
 {
-	this->Init();
+	this->Clear();
+}
+
+template <typename  DataRL>
+ElementRL<DataRL>* RingList<DataRL>::begin()
+{
+	return start;
 }
 
 
@@ -91,92 +101,19 @@ void RingList<DataRL>::PushBack(DataRL flower)
 }
 
 
-template <typename  DataRL>
-void RingList<DataRL>::Out(ofstream &outfile)
-{
-
-	ElementRL<DataRL>* newEl = start;
-	for (int i = 0; i < this->amountEl; ++i)
-	{
-		newEl->data->Out(outfile);
-		newEl = newEl->next;
-	}
-
-}
-
-
-template <typename  DataRL>
-void RingList<DataRL>::Clear()
-{
-	ElementRL<DataRL>* newEl = start;
-	ElementRL<DataRL>* newElnext;
-	if (start!=0)  newElnext  = start->next;
-
-	for (int i = 0; i < this->amountEl; ++i)
-	{
-		delete newEl->data;
-
-		delete newEl;
-		newEl = newElnext;
-		newElnext = newElnext->next;
-	}
-
-	this->Init();
-}
-
 
 //Общий код для конструктора и для очищения контейнера
 template <typename  DataRL>
-void RingList<DataRL>::Init()
+void RingList<DataRL>::Clear()
 {
 	this->amountEl = 0;
 	start = 0;
 	end = 0;
+	now = 0;
 }
-
-template <typename  DataRL>
-RingList<DataRL>::~RingList()
-{
-	this->Clear();
-}
-
 
 template <typename  DataRL>
 int RingList<DataRL>::WatAmount()
 {
 	return this->amountEl;
-}
-
-#define TREE 1
-#define BUSH 2
-
-template <typename  DataRL>
-void RingList<DataRL>::In(ifstream &infile)
-{
-	int type;
-
-	while (true)
-	{
-		type = 0;
-		infile >> type;
-		if (!type) break;
-		//Значит ввод не закончен
-		Flower *object;
-
-
-		if (type == TREE)
-		{
-			object = new Tree;
-		}
-
-		if (type == BUSH)
-		{
-			object = new Bush;
-		}
-
-		object->In(infile);
-		this->PushBack(object);
-
-	}
-
 }

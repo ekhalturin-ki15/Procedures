@@ -1,20 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "RingList.h"
 #include "Flower.h"
 #include "Tree.h"
 #include "Bush.h"
-
-using namespace std;
 
 int main(int amount, char* param[])
 {
 
 	setlocale(LC_ALL, "Russian");
 
-	ifstream infile;
-	ofstream outfile;
+	std::ifstream infile;
+	std::ofstream outfile;
 
 	if (amount == 3)
 	{
@@ -28,24 +25,47 @@ int main(int amount, char* param[])
 	}
 
 
-	cout << "Старт" << endl;
+	std::cout << "Старт" << std::endl;
 
 	RingList<Flower*> container;
+	
+	Flower::InAll(infile, container);
 
-	container.In(infile);
+	std::cout << "Данные считаны с файла" << std::endl;
 
-	cout << "Данные считаны с файла" << endl;
+	Flower::OutAll(outfile, container);
 
-	container.Out(outfile);
+	std::cout << "Данные выведенны в файл" << std::endl<<"количество объектов: "<< container.WatAmount()<< std::endl;
 
-	cout << "Данные выведенны в файл" << endl<<"количество объектов: "<< container.WatAmount()<<endl;
+	Flower::Clear(container);
 
-	container.Clear();
+	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
 
-	cout << "Контейнер очищен" << endl << "количество объектов: " << container.WatAmount() << endl;
+	Flower::OutAll(outfile, container);
 
-	container.Out(outfile);
-
-	cout << "Финиш" << endl;
+	std::cout << "Финиш" << std::endl;
 	getchar();
+}
+
+
+#define TREE 1
+#define BUSH 2
+
+Flower * Flower::GetFlower(std::ifstream & infile, int type)
+{
+	Flower *object;
+
+	if (type == TREE)
+	{
+		object = new Tree;
+	}
+
+	if (type == BUSH)
+	{
+		object = new Bush;
+	}
+
+	object->In(infile);
+
+	return object;
 }

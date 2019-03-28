@@ -3,15 +3,20 @@
 #include <fstream>
 #include "Flower.h"
 
-
-class Tree : public Flower
+struct Tree
 {
-public:
-
-	void In(ifstream &infile);
-	void Out(ofstream &outfile);
-
-
-private:
+	std::string name;
 	__int64 year;
 };
+
+//class Tree : public Flower
+//{
+//public:
+//
+//	void In(std::ifstream &infile);
+//	void Out(std::ofstream &outfile);
+//
+//
+//private:
+//	__int64 year;
+//};
