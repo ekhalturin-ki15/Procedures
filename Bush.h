@@ -8,9 +8,9 @@ const std::vector<std::string> watIsMonth = { "январь", "февраль", "март", "апре
 
 struct Bush
 {
-	std::string name;
+	char name[20];
 	int month;
 };
 
-Bush InBush(std::ifstream & infile);
+void InBush(std::ifstream & infile, Bush &b);
 void OutBush(std::ofstream &outfile, Bush b);

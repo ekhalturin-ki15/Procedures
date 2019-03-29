@@ -1,10 +1,11 @@
 #include "Bush.h"
 
-Bush InBush(std::ifstream & infile)
+void InBush(std::ifstream & infile, Bush &b)
 {
-	Bush b;
-	infile >> b.month >> b.name;
-	return b;
+	std::string s;
+	infile >> b.month >> s;
+	if (s.length()<20)
+		strcpy(b.name, s.c_str());
 }
 
 

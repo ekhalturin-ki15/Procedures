@@ -20,14 +20,24 @@ struct Flower
 	Flower() {};
 	~Flower() {};
 	Flower(const Flower & f) {};
-	Flower operator =(const Flower & f)
+	Flower& operator= (const Flower &object)
 	{
-		return f;
+		key = object.key;
+		switch (object.key)
+		{
+		case Type::tree:
+			t = object.t;
+			break;
+		case Type::bush:
+			b = object.b;
+			break;
+		}
+		return *this;
 	}
 
 
 };
 
 void InAll(std::ifstream & infile, RingList<Flower>& container);
-Flower GetFlower(std::ifstream & infile, int type);
+void GetFlower(std::ifstream & infile, int type, Flower& object);
 void OutAll(std::ofstream & outfile, RingList<Flower> container);

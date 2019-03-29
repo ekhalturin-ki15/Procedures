@@ -1,10 +1,11 @@
 #include "Tree.h"
 
-Tree InTree(std::ifstream & infile)
+void InTree(std::ifstream & infile, Tree &t)
 {
-	Tree t;
-	infile >> t.year >> t.name;
-	return t;
+	std::string s;
+	infile >> t.year >> s;
+	if (s.length()<20)
+		strcpy(t.name, s.c_str());
 }
 
 

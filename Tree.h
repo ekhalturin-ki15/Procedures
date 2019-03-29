@@ -6,10 +6,10 @@
 
 struct Tree
 {
-	std::string name;
+	char name[20];
 	__int64 year;
 };
 
-Tree InTree(std::ifstream & infile);
+void InTree(std::ifstream & infile, Tree &t);
 
 void OutTree(std::ofstream &outfile, Tree t);

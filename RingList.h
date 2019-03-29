@@ -61,7 +61,11 @@ private:
 template <typename  DataRL>
 RingList<DataRL>::RingList()
 {
-	this->Clear();
+
+	start = 0;
+	end = 0;
+	now = 0;
+	amountEl = 0;
 }
 
 template <typename  DataRL>
@@ -116,7 +120,7 @@ void RingList<DataRL>::Clear()
 		nextit = nextit->next;
 	}
 
-	this->amountEl = 0;
+	amountEl = 0;
 	start = 0;
 	end = 0;
 	now = 0;

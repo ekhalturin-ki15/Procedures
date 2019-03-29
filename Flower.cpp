@@ -2,6 +2,8 @@
 
 #include "Flower.h"
 
+
+
 void InAll(std::ifstream & infile, RingList<Flower>& container)
 {
 	int type;
@@ -11,25 +13,25 @@ void InAll(std::ifstream & infile, RingList<Flower>& container)
 		type = 0;
 		infile >> type;
 		if (!type) break;
-		container.PushBack(GetFlower(infile, type));
+		Flower object;
+		GetFlower(infile, type, object);
+		container.PushBack(object);
 	}
 }
 
-Flower GetFlower(std::ifstream & infile, int type)
+void GetFlower(std::ifstream & infile, int type, Flower& object)
 {
-	Flower object;
-	object.key = static_cast<Type> (type);
-	if (type == Type::bush)
+	object.key = static_cast<Type> (type-1);
+	switch (object.key)
 	{
-		object.b = InBush(infile);
+	case Type::tree:
+		InTree(infile, object.t);
+		break;
+	case Type::bush:
+		InBush(infile, object.b);
+		break;
 	}
 
-	if (type == Type::tree)
-	{
-		object.t = InTree(infile);
-	}
-
-	return object;
 }
 
 void OutAll(std::ofstream & outfile, RingList<Flower> container)
