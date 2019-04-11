@@ -89,6 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;RED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)/% (RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +146,6 @@
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Flower.cpp" />
-    <ClCompile Include="Flower.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bush.h" />
+    <ClInclude Include="Flower.h" />
     <ClInclude Include="RingList.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>

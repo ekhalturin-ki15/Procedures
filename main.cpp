@@ -35,6 +35,8 @@ int main(int amount, char* param[])
 
 	std::cout << "Данные считаны с файла" << std::endl;
 
+	Sort(container);
+
 	OutAll(outfile, container);
 
 	std::cout << "Данные выведенны в файл" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
@@ -42,6 +44,8 @@ int main(int amount, char* param[])
 	container.Clear();
 
 	std::cout << "Контейнер очищен" << std::endl << "количество объектов: " << container.WatAmount() << std::endl;
+
+	OutAll(outfile, container);
 
 	std::cout << "Финиш" << std::endl;
 
