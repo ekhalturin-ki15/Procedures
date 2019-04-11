@@ -12,7 +12,8 @@ void InBush(std::ifstream & infile, Bush &b)
 
 void OutBush(std::ofstream &outfile, Bush b)
 {
-	
+	outfile << "Кол-во согласных в названии =" << BushAmount(b) << "  ";
+
 	outfile << "Это кустарник, ";
 
 	if (1<=b.month && b.month<=12)
@@ -27,4 +28,17 @@ void OutBush(std::ofstream &outfile, Bush b)
 
 	outfile << ", Его название: " << b.name<<"\n";
 
+}
+
+int BushAmount(Bush b)
+{
+	int all = 0;
+	std::set<char> gl = { 'а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я' };
+	std::string name = b.name;
+
+	for (auto it : name)
+		if (!gl.count(tolower(it)))
+			all++;
+
+	return all;
 }
