@@ -1,7 +1,6 @@
-#pragma once
+﻿#pragma once
 
 #include "Flower.h"
-
 
 
 void InAll(std::ifstream & infile, RingList<Flower>& container)
@@ -21,7 +20,7 @@ void InAll(std::ifstream & infile, RingList<Flower>& container)
 
 void GetFlower(std::ifstream & infile, int type, Flower& object)
 {
-	object.key = static_cast<Type> (type-1);
+	object.key = static_cast<Type> (type - 1);
 	switch (object.key)
 	{
 	case Type::tree:

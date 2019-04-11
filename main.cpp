@@ -1,9 +1,10 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <string>
 #include "Flower.h"
 
 const int StandartInpAtr = 3;
+
 
 int main(int amount, char* param[])
 {
@@ -26,23 +27,23 @@ int main(int amount, char* param[])
 
 
 	
-	std::cout << "Ñòàðò" << std::endl;
+	std::cout << "Ð¡Ñ‚Ð°Ñ€Ñ‚" << std::endl;
 
 	RingList<Flower> container;
 
 	InAll(infile, container);
 
-	std::cout << "Äàííûå ñ÷èòàíû ñ ôàéëà" << std::endl;
+	std::cout << "Ð”Ð°Ð½Ð½Ñ‹Ðµ ÑÑ‡Ð¸Ñ‚Ð°Ð½Ñ‹ Ñ Ñ„Ð°Ð¹Ð»Ð°" << std::endl;
 
 	OutAll(outfile, container);
 
-	std::cout << "Äàííûå âûâåäåííû â ôàéë" << std::endl << "êîëè÷åñòâî îáúåêòîâ: " << container.WatAmount() << std::endl;
+	std::cout << "Ð”Ð°Ð½Ð½Ñ‹Ðµ Ð²Ñ‹Ð²ÐµÐ´ÐµÐ½Ð½Ñ‹ Ð² Ñ„Ð°Ð¹Ð»" << std::endl << "ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð²: " << container.WatAmount() << std::endl;
 
 	container.Clear();
 
-	std::cout << "Êîíòåéíåð î÷èùåí" << std::endl << "êîëè÷åñòâî îáúåêòîâ: " << container.WatAmount() << std::endl;
+	std::cout << "ÐšÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€ Ð¾Ñ‡Ð¸Ñ‰ÐµÐ½" << std::endl << "ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð²: " << container.WatAmount() << std::endl;
 
-	std::cout << "Ôèíèø" << std::endl;
+	std::cout << "Ð¤Ð¸Ð½Ð¸Ñˆ" << std::endl;
 
 	
 	getchar();
