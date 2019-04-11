@@ -41,3 +41,4 @@ struct Flower
 void InAll(std::ifstream & infile, RingList<Flower>& container);
 void GetFlower(std::ifstream & infile, int type, Flower& object);
 void OutAll(std::ofstream & outfile, RingList<Flower> container);
+
