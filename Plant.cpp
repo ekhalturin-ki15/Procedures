@@ -1,9 +1,7 @@
-﻿#pragma once
 
-#include "Flower.h"
+#include "Plant.h"
 
-
-void InAll(std::ifstream & infile, RingList<Flower>& container)
+void InAll(std::ifstream & infile, RingList<Plant>& container)
 {
 	int type;
 
@@ -12,13 +10,13 @@ void InAll(std::ifstream & infile, RingList<Flower>& container)
 		type = 0;
 		infile >> type;
 		if (!type) break;
-		Flower object;
+		Plant object;
 		GetFlower(infile, type, object);
 		container.PushBack(object);
 	}
 }
 
-void GetFlower(std::ifstream & infile, int type, Flower& object)
+void GetFlower(std::ifstream & infile, int type, Plant& object)
 {
 	object.key = static_cast<Type> (type - 1);
 	switch (object.key)
@@ -29,13 +27,16 @@ void GetFlower(std::ifstream & infile, int type, Flower& object)
 	case Type::bush:
 		InBush(infile, object.b);
 		break;
+	case Type::flower:
+		InFlower(infile, object.f);
+		break;
 	}
 
 }
 
-void OutAll(std::ofstream & outfile, RingList<Flower> container)
+void OutAll(std::ofstream & outfile, RingList<Plant> container)
 {
-	ElementRL<Flower> *it = container.begin();
+	ElementRL<Plant> *it = container.begin();
 	for (int i = 0; i < container.WatAmount(); i++)
 	{
 		switch (it->data.key)
@@ -45,6 +46,9 @@ void OutAll(std::ofstream & outfile, RingList<Flower> container)
 			break;
 		case Type::bush:
 			OutBush(outfile, it->data.b);
+			break;
+		case Type::flower:
+			OutFlower(outfile, it->data.f);
 			break;
 		}
 		it = it->next;

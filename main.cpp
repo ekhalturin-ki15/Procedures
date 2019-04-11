@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include "Flower.h"
+#include "Plant.h"
 
 const int StandartInpAtr = 3;
 
@@ -29,7 +29,7 @@ int main(int amount, char* param[])
 	
 	std::cout << "Старт" << std::endl;
 
-	RingList<Flower> container;
+	RingList<Plant> container;
 
 	InAll(infile, container);
 

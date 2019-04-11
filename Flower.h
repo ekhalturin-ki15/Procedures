@@ -1,43 +1,48 @@
 ﻿#pragma once
-
 #include <string>
 #include <vector>
 #include <fstream>
-#include "RingList.h"
-#include "Bush.h"
-#include "Tree.h"
 
-enum Type { tree, bush } ;
+using namespace std;
 
-struct Flower
+const std::vector<std::string> watIsType = { "домашние", "садовые", "дикие", "редкие", "горные" };
+
+struct Flower 
 {
-	Type key;
-	union
-	{
-		Bush b;
-		Tree t;
-	};
-	Flower() {};
-	~Flower() {};
-	Flower(const Flower & f) {};
-	Flower& operator= (const Flower &object)
-	{
-		key = object.key;
-		switch (object.key)
-		{
-		case Type::tree:
-			t = object.t;
-			break;
-		case Type::bush:
-			b = object.b;
-			break;
-		}
-		return *this;
-	}
-
-
+public:
+	char name[20];
+	int type;
 };
 
-void InAll(std::ifstream & infile, RingList<Flower>& container);
-void GetFlower(std::ifstream & infile, int type, Flower& object);
-void OutAll(std::ofstream & outfile, RingList<Flower> container);
+void InFlower(std::ifstream & infile, Flower &f);
+void OutFlower(std::ofstream &outfile, Flower f);
+
+
+
+void InFlower(std::ifstream & infile, Flower &f)
+{
+	std::string s;
+	infile >> f.type >> s;
+	if (s.length()<20)
+		strcpy(f.name, s.c_str());
+}
+
+
+
+void OutFlower(std::ofstream &outfile, Flower f)
+{
+	outfile << "Это цветок, ";
+
+	if (1 <= f.type && f.type <= watIsType.size())
+	{
+		outfile << "тип цветка - " << watIsType[f.type - 1];
+
+	}
+	else
+	{
+		outfile << "тип считался некорректно";
+	}
+
+	outfile << ", Его название: " << f.name << "\n";
+
+}

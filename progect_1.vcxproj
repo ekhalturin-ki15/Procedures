@@ -144,9 +144,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bush.cpp" />
-    <ClCompile Include="Flower.cpp" />
     <ClCompile Include="Flower.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bush.h" />
+    <ClInclude Include="Plant.h" />
     <ClInclude Include="RingList.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
