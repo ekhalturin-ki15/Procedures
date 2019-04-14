@@ -25,8 +25,6 @@ int main(int amount, char* param[])
 		outfile.open("out.txt");
 	}
 
-
-	
 	std::cout << "Старт" << std::endl;
 
 	RingList<Flower> container;
@@ -35,6 +33,10 @@ int main(int amount, char* param[])
 
 	std::cout << "Данные считаны с файла" << std::endl;
 
+	OutAll(outfile, container);
+	outfile << "---------------" << std::endl;
+
+	std::cout << "Отсортировали" << std::endl;
 	Sort(container);
 
 	OutAll(outfile, container);
@@ -48,8 +50,5 @@ int main(int amount, char* param[])
 	OutAll(outfile, container);
 
 	std::cout << "Финиш" << std::endl;
-
-	
-	getchar();
 
 }

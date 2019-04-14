@@ -54,31 +54,34 @@ void OutAll(std::ofstream & outfile, RingList<Flower> container)
 
 void Sort(RingList<Flower>& container)
 {
-	vector<Flower*> mass;
-	ElementRL<Flower> *it = container.begin();
+	vector<ElementRL<Flower>*> mass;
+	ElementRL<Flower>* it = container.begin();
 	for (int i = 0; i < container.WatAmount(); i++)
 	{
-		mass.push_back(&(it->data));
+		mass.push_back(it);
 		it = it->next;
 	}
 
 	QSort(mass, 0, mass.size() - 1);
 }
 
-void QSort(vector<Flower*>& mass, int l, int r)
+void QSort(vector<ElementRL<Flower>*> & mass, int l, int r)
 {
 	int i = l, j = r;
-	Flower* p = mass[(l + r) / 2];
+	Flower* p = &(mass[(l + r) / 2]->data);
 	while (true)
 	{
 
-		while (cmp(p,mass[i]) == 1) i++;
+		while (cmp(p, &(mass[i]->data)) == 1) i++;
 
-		while (cmp(p, mass[j]) == -1) j--;
+		while (cmp(p, &(mass[j]->data)) == -1) j--;
 
 		if (i <= j)
 		{
-			std::swap(mass[i], mass[j]);
+			Flower c;
+			c = mass[i]->data;
+			mass[i]->data = mass[j]->data;
+			mass[j]->data = c;
 
 			i++;
 			j--;

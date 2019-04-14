@@ -47,6 +47,6 @@ void OutAll(std::ofstream & outfile, RingList<Flower> container);
 
 void Sort(RingList<Flower>& container);
 
-void QSort(std::vector<Flower*>& mass, int l, int r);
+void QSort(std::vector<ElementRL<Flower>*>& mass, int l, int r);
 
 int cmp(Flower* l, Flower* r);
